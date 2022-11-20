@@ -1,0 +1,10 @@
+{
+  "jhipstersandboxApp": {
+    "StadeDenutrition": {
+      "null": "",
+      "NON_DENUTRI": "NON_DENUTRI",
+      "MODEREE": "MODEREE",
+      "SEVERE": "SEVERE"
+    }
+  }
+}

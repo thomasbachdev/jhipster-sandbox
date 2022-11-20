@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154520",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "soignant",
+  "fields": [
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Informations concernant le soignant",
+  "jpaMetamodelFiltering": true,
+  "name": "Soignant",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "soignant",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "soignant",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "examen",
+      "otherEntityRelationshipName": "soignant",
+      "relationshipName": "examen",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

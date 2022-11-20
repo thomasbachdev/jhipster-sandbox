@@ -1,0 +1,30 @@
+{
+  "jhipstersandboxApp": {
+    "docteur": {
+      "home": {
+        "title": "Docteurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Docteur",
+        "createOrEditLabel": "Créer ou éditer un Docteur",
+        "notFound": "Aucun Docteur trouvé"
+      },
+      "created": "Un nouveau Docteur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Docteur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Docteur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Docteur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Docteur"
+      },
+      "id": "ID",
+      "deleted": "Deleted",
+      "user": "User",
+      "demande": "Demande",
+      "rappel": "Rappel",
+      "help": {
+        "deleted": "Flag de suppression"
+      }
+    }
+  }
+}

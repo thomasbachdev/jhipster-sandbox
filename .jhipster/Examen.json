@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154517",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "examen",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date de réalisation de l'examen"
+    },
+    {
+      "fieldName": "poids",
+      "fieldType": "Float",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Poids du résident mesuré lors de l'examen"
+    },
+    {
+      "fieldName": "albumine",
+      "fieldType": "Float",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0",
+      "javadoc": "Taux d'albumine du résident mesuré lors de l'examen"
+    },
+    {
+      "fieldName": "imc",
+      "fieldType": "Float",
+      "javadoc": "Indice de masse corporelle du résident, le jour de l'examen"
+    },
+    {
+      "fieldName": "epa",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "10",
+      "fieldValidateRulesMin": "0",
+      "javadoc": "EPA du résident mesuré lors de l'examen"
+    },
+    {
+      "fieldName": "commentaire",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "2000",
+      "javadoc": "Commentaire du soignant sur l'examen réalisé"
+    },
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Informations résultantes d'un examen, concernant un résident",
+  "jpaMetamodelFiltering": true,
+  "name": "Examen",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resident",
+      "otherEntityRelationshipName": "examen",
+      "relationshipName": "resident",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "soignant",
+      "otherEntityRelationshipName": "examen",
+      "relationshipName": "soignant",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

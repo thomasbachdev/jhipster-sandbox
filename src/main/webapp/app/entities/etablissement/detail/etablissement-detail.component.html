@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading"><span jhiTranslate="jhipstersandboxApp.etablissement.detail.title">Etablissement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.etablissement.nom" [ngbTooltip]="'jhipstersandboxApp.etablissement.help.nom' | translate"
+            >Nom</span
+          >
+        </dt>
+        <dd>
+          <span>{{ etablissement.nom }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="jhipstersandboxApp.etablissement.deleted"
+            [ngbTooltip]="'jhipstersandboxApp.etablissement.help.deleted' | translate"
+            >Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ etablissement.deleted }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

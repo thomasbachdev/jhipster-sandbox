@@ -1,0 +1,171 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-demande-heading" data-cy="DemandeCreateUpdateHeading" jhiTranslate="jhipstersandboxApp.demande.home.createOrEditLabel">
+        Créer ou éditer un Demande
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.demande.dateEmition"
+            for="field_dateEmition"
+            [ngbTooltip]="'jhipstersandboxApp.demande.help.dateEmition' | translate"
+            >Date Emition</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateEmition"
+              data-cy="dateEmition"
+              type="datetime-local"
+              class="form-control"
+              name="dateEmition"
+              formControlName="dateEmition"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dateEmition')!.invalid && (editForm.get('dateEmition')!.dirty || editForm.get('dateEmition')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateEmition')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dateEmition')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              Ce champ doit être une date et une heure.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.demande.dateLimite"
+            for="field_dateLimite"
+            [ngbTooltip]="'jhipstersandboxApp.demande.help.dateLimite' | translate"
+            >Date Limite</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateLimite"
+              data-cy="dateLimite"
+              type="text"
+              class="form-control"
+              name="dateLimite"
+              ngbDatepicker
+              #dateLimiteDp="ngbDatepicker"
+              formControlName="dateLimite"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateLimiteDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dateLimite')!.invalid && (editForm.get('dateLimite')!.dirty || editForm.get('dateLimite')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateLimite')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.demande.description"
+            for="field_description"
+            [ngbTooltip]="'jhipstersandboxApp.demande.help.description' | translate"
+            >Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+          <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('description')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.demande.deleted"
+            for="field_deleted"
+            [ngbTooltip]="'jhipstersandboxApp.demande.help.deleted' | translate"
+            >Deleted</label
+          >
+          <input type="checkbox" class="form-check" name="deleted" id="field_deleted" data-cy="deleted" formControlName="deleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipstersandboxApp.demande.resident" for="field_resident">Resident</label>
+          <select
+            class="form-control"
+            id="field_resident"
+            data-cy="resident"
+            name="resident"
+            formControlName="resident"
+            [compareWith]="compareResident"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="residentOption" *ngFor="let residentOption of residentsSharedCollection">{{ residentOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipstersandboxApp.demande.docteur" for="field_docteur">Docteur</label>
+          <select
+            class="form-control"
+            id="field_docteur"
+            data-cy="docteur"
+            name="docteur"
+            formControlName="docteur"
+            [compareWith]="compareDocteur"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="docteurOption" *ngFor="let docteurOption of docteursSharedCollection">{{ docteurOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

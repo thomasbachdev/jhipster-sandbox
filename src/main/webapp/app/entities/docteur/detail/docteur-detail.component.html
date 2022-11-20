@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="docteur">
+      <h2 data-cy="docteurDetailsHeading"><span jhiTranslate="jhipstersandboxApp.docteur.detail.title">Docteur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ docteur.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.docteur.deleted" [ngbTooltip]="'jhipstersandboxApp.docteur.help.deleted' | translate"
+            >Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ docteur.deleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipstersandboxApp.docteur.user">User</span></dt>
+        <dd>
+          <span>{{ docteur.user?.id }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/docteur', docteur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

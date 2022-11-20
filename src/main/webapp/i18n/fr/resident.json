@@ -1,0 +1,48 @@
+{
+  "jhipstersandboxApp": {
+    "resident": {
+      "home": {
+        "title": "Residents",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Resident",
+        "createOrEditLabel": "Créer ou éditer un Resident",
+        "notFound": "Aucun Resident trouvé"
+      },
+      "created": "Un nouveau Resident a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Resident avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Resident avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Resident {{ id }} ?"
+      },
+      "detail": {
+        "title": "Resident"
+      },
+      "id": "ID",
+      "numero": "Numero",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "dateNaissance": "Date Naissance",
+      "sexe": "Sexe",
+      "dateArrivee": "Date Arrivee",
+      "chambre": "Chambre",
+      "taille": "Taille",
+      "denutrition": "Denutrition",
+      "deleted": "Deleted",
+      "etablissement": "Etablissement",
+      "demande": "Demande",
+      "examen": "Examen",
+      "help": {
+        "numero": "Numéro correspondant aux données fournies par le client",
+        "nom": "Nom du résident",
+        "prenom": "Prénom du résident",
+        "dateNaissance": "Date de naissance du résident",
+        "sexe": "Sexe du résident",
+        "dateArrivee": "Date d&#39;arrivée du résident dans son établissement",
+        "chambre": "Numéro de chambre du résident dans son établissement",
+        "taille": "Taille du résident à son entrée dans l&#39;établissement",
+        "denutrition": "Indication de stade de dénutrition du résident",
+        "deleted": "Flag de suppression"
+      }
+    }
+  }
+}

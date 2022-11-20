@@ -1,0 +1,11 @@
+id;numero;nom;prenom;date_naissance;sexe;date_arrivee;chambre;taille;denutrition;deleted
+1;20867;"Cd";"Hptyuj";2022-11-20;MASCULIN;2022-11-19;archit;30152;SEVERE;false
+2;39373;"Vfpdm";"Dm";2022-11-19;NON_BINAIRE;2022-11-20;Stand-;13756;NON_DENUTRI;false
+3;53508;"Scrr";"Jfsnfp";2022-11-20;MASCULIN;2022-11-20;calcul;46103;SEVERE;false
+4;20269;"Jioq";"Dvojw";2022-11-19;FEMININ;2022-11-19;Chicke;61165;NON_DENUTRI;false
+5;93378;"Abfie";"Xu";2022-11-20;MASCULIN;2022-11-19;paymen;64942;NON_DENUTRI;true
+6;92072;"Xgrph";"Ig";2022-11-19;FEMININ;2022-11-19;matrix;64227;NON_DENUTRI;true
+7;35472;"Emfu";"Ngsllyg";2022-11-19;MASCULIN;2022-11-19;c;80103;SEVERE;true
+8;91944;"Asteo";"Tcyaw";2022-11-20;NON_BINAIRE;2022-11-19;a matr;90314;SEVERE;true
+9;7799;"Krbqkua";"Katt";2022-11-19;NON_BINAIRE;2022-11-20;tan;49877;MODEREE;false
+10;11180;"Bbrzhcc";"Semfnm";2022-11-20;NON_BINAIRE;2022-11-19;Rustic;8330;SEVERE;false

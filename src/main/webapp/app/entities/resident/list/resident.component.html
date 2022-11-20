@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="ResidentHeading">
+    <span jhiTranslate="jhipstersandboxApp.resident.home.title">Residents</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipstersandboxApp.resident.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-resident"
+        [routerLink]="['/resident/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipstersandboxApp.resident.home.createLabel"> Créer un nouveau Resident </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="residents?.length === 0">
+    <span jhiTranslate="jhipstersandboxApp.resident.home.notFound">Aucun Resident trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="residents && residents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="numero">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.numero">Numero</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nom">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.nom">Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prenom">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.prenom">Prenom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateNaissance">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.dateNaissance">Date Naissance</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sexe">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.sexe">Sexe</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateArrivee">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.dateArrivee">Date Arrivee</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="chambre">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.chambre">Chambre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="taille">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.taille">Taille</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="denutrition">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.denutrition">Denutrition</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deleted">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.deleted">Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="etablissement.id">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.resident.etablissement">Etablissement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resident of residents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/resident', resident.id, 'view']">{{ resident.id }}</a>
+          </td>
+          <td>{{ resident.numero }}</td>
+          <td>{{ resident.nom }}</td>
+          <td>{{ resident.prenom }}</td>
+          <td>{{ resident.dateNaissance | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'jhipstersandboxApp.Sexe.' + resident.sexe }}">{{ resident.sexe }}</td>
+          <td>{{ resident.dateArrivee | formatMediumDate }}</td>
+          <td>{{ resident.chambre }}</td>
+          <td>{{ resident.taille }}</td>
+          <td jhiTranslate="{{ 'jhipstersandboxApp.StadeDenutrition.' + resident.denutrition }}">{{ resident.denutrition }}</td>
+          <td>{{ resident.deleted }}</td>
+          <td>
+            <div *ngIf="resident.etablissement">
+              <a [routerLink]="['/etablissement', resident.etablissement.id, 'view']">{{ resident.etablissement.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/resident', resident.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/resident', resident.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(resident)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

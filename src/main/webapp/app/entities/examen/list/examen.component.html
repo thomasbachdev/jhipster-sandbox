@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="ExamenHeading">
+    <span jhiTranslate="jhipstersandboxApp.examen.home.title">Examen</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="jhipstersandboxApp.examen.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-examen"
+        [routerLink]="['/examen/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="jhipstersandboxApp.examen.home.createLabel"> Créer un nouveau Examen </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="examen?.length === 0">
+    <span jhiTranslate="jhipstersandboxApp.examen.home.notFound">Aucun Examen trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="examen && examen.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.date">Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="poids">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.poids">Poids</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="albumine">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.albumine">Albumine</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="imc">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.imc">Imc</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="epa">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.epa">Epa</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="commentaire">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.commentaire">Commentaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="deleted">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.deleted">Deleted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="resident.id">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.resident">Resident</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="soignant.id">
+            <div class="d-flex">
+              <span jhiTranslate="jhipstersandboxApp.examen.soignant">Soignant</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let examen of examen; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/examen', examen.id, 'view']">{{ examen.id }}</a>
+          </td>
+          <td>{{ examen.date | formatMediumDatetime }}</td>
+          <td>{{ examen.poids }}</td>
+          <td>{{ examen.albumine }}</td>
+          <td>{{ examen.imc }}</td>
+          <td>{{ examen.epa }}</td>
+          <td>{{ examen.commentaire }}</td>
+          <td>{{ examen.deleted }}</td>
+          <td>
+            <div *ngIf="examen.resident">
+              <a [routerLink]="['/resident', examen.resident.id, 'view']">{{ examen.resident.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="examen.soignant">
+              <a [routerLink]="['/soignant', examen.soignant.id, 'view']">{{ examen.soignant.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/examen', examen.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/examen', examen.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(examen)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

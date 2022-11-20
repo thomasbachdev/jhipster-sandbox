@@ -1,0 +1,11 @@
+id;date;poids;albumine;imc;epa;commentaire;deleted
+1;2022-11-20T09:08:29;90393;87631;25706;5;parse Brésil;true
+2;2022-11-19T20:51:24;1013;65783;33685;2;b Sleek asymmetric;true
+3;2022-11-20T14:52:37;16903;32987;92854;2;c open-source;true
+4;2022-11-19T19:47:59;79590;30339;24053;1;Berkshire mobile;false
+5;2022-11-20T15:05:25;98304;97045;56031;10;Bourgogne Practical;true
+6;2022-11-20T07:11:57;10127;47911;71681;9;Euro;false
+7;2022-11-20T13:56:22;55854;76418;35069;9;bluetooth gold;true
+8;2022-11-19T16:24:05;44318;24812;24934;3;c orange Streamlined;false
+9;2022-11-19T17:52:13;34271;19370;39133;5;Madagascar port Money;true
+10;2022-11-19T19:04:25;25836;54822;48527;0;b strategy;false

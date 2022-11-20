@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154515",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "etablissement",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesPattern": "^[A-Z][a-z]+$",
+      "javadoc": "Nom de l'établissement"
+    },
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Informations sur l'établissement EHPAD",
+  "jpaMetamodelFiltering": true,
+  "name": "Etablissement",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resident",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "resident",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "soignant",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "soignant",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

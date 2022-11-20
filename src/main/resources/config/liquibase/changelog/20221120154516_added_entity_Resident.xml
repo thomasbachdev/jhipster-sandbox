@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Resident.
+    -->
+    <changeSet id="20221120154516-1" author="jhipster">
+        <createTable tableName="resident" remarks="Informations fixes concernant un résident">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="numero" type="integer" remarks="Numéro correspondant aux données fournies par le client">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_resident__numero" />
+            </column>
+            <column name="nom" type="varchar(50)" remarks="Nom du résident">
+                <constraints nullable="false" />
+            </column>
+            <column name="prenom" type="varchar(50)" remarks="Prénom du résident">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_naissance" type="date" remarks="Date de naissance du résident">
+                <constraints nullable="false" />
+            </column>
+            <column name="sexe" type="varchar(255)" remarks="Sexe du résident">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_arrivee" type="date" remarks="Date d&apos;arrivée du résident dans son établissement">
+                <constraints nullable="false" />
+            </column>
+            <column name="chambre" type="varchar(6)" remarks="Numéro de chambre du résident dans son établissement">
+                <constraints nullable="false" />
+            </column>
+            <column name="taille" type="${floatType}" remarks="Taille du résident à son entrée dans l&apos;établissement">
+                <constraints nullable="false" />
+            </column>
+            <column name="denutrition" type="varchar(255)" remarks="Indication de stade de dénutrition du résident">
+                <constraints nullable="true" />
+            </column>
+            <column name="deleted" type="boolean" remarks="Flag de suppression">
+                <constraints nullable="true" />
+            </column>
+            <column name="etablissement_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20221120154516-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/resident.csv"
+                  separator=";"
+                  tableName="resident"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="numero" type="numeric"/>
+            <column name="nom" type="string"/>
+            <column name="prenom" type="string"/>
+            <column name="date_naissance" type="date"/>
+            <column name="sexe" type="string"/>
+            <column name="date_arrivee" type="date"/>
+            <column name="chambre" type="string"/>
+            <column name="taille" type="numeric"/>
+            <column name="denutrition" type="string"/>
+            <column name="deleted" type="boolean"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

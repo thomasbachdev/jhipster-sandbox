@@ -1,0 +1,101 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154516",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "resident",
+  "fields": [
+    {
+      "fieldName": "numero",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"],
+      "javadoc": "Numéro correspondant aux données fournies par le client"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesPattern": "^[A-Z][a-z]+$",
+      "javadoc": "Nom du résident"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesPattern": "^[A-Z][a-z]+$",
+      "javadoc": "Prénom du résident"
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date de naissance du résident"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "FEMININ,MASCULIN,NON_BINAIRE",
+      "javadoc": "Sexe du résident"
+    },
+    {
+      "fieldName": "dateArrivee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date d'arrivée du résident dans son établissement"
+    },
+    {
+      "fieldName": "chambre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "6",
+      "javadoc": "Numéro de chambre du résident dans son établissement"
+    },
+    {
+      "fieldName": "taille",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Taille du résident à son entrée dans l'établissement"
+    },
+    {
+      "fieldName": "denutrition",
+      "fieldType": "StadeDenutrition",
+      "fieldValues": "NON_DENUTRI,MODEREE,SEVERE",
+      "javadoc": "Indication de stade de dénutrition du résident"
+    },
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Informations fixes concernant un résident",
+  "jpaMetamodelFiltering": true,
+  "name": "Resident",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "resident",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "demande",
+      "otherEntityRelationshipName": "resident",
+      "relationshipName": "demande",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "examen",
+      "otherEntityRelationshipName": "resident",
+      "relationshipName": "examen",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

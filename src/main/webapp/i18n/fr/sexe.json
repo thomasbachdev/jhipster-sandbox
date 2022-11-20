@@ -1,0 +1,10 @@
+{
+  "jhipstersandboxApp": {
+    "Sexe": {
+      "null": "",
+      "FEMININ": "FEMININ",
+      "MASCULIN": "MASCULIN",
+      "NON_BINAIRE": "NON_BINAIRE"
+    }
+  }
+}

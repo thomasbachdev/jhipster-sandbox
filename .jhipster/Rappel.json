@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154518",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "rappel",
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date où le rappel doit être effectué"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "2000",
+      "javadoc": "Descriptif textuel de l'objectif du rappel"
+    },
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Rappel qu'un docteur souhaite avoir à une date donnée",
+  "jpaMetamodelFiltering": true,
+  "name": "Rappel",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "docteur",
+      "otherEntityRelationshipName": "rappel",
+      "relationshipName": "docteur",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

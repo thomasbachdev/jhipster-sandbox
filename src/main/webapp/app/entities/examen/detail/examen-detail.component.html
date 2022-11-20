@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="examen">
+      <h2 data-cy="examenDetailsHeading"><span jhiTranslate="jhipstersandboxApp.examen.detail.title">Examen</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ examen.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.date" [ngbTooltip]="'jhipstersandboxApp.examen.help.date' | translate">Date</span>
+        </dt>
+        <dd>
+          <span>{{ examen.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.poids" [ngbTooltip]="'jhipstersandboxApp.examen.help.poids' | translate"
+            >Poids</span
+          >
+        </dt>
+        <dd>
+          <span>{{ examen.poids }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.albumine" [ngbTooltip]="'jhipstersandboxApp.examen.help.albumine' | translate"
+            >Albumine</span
+          >
+        </dt>
+        <dd>
+          <span>{{ examen.albumine }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.imc" [ngbTooltip]="'jhipstersandboxApp.examen.help.imc' | translate">Imc</span>
+        </dt>
+        <dd>
+          <span>{{ examen.imc }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.epa" [ngbTooltip]="'jhipstersandboxApp.examen.help.epa' | translate">Epa</span>
+        </dt>
+        <dd>
+          <span>{{ examen.epa }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.commentaire" [ngbTooltip]="'jhipstersandboxApp.examen.help.commentaire' | translate"
+            >Commentaire</span
+          >
+        </dt>
+        <dd>
+          <span>{{ examen.commentaire }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.examen.deleted" [ngbTooltip]="'jhipstersandboxApp.examen.help.deleted' | translate"
+            >Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ examen.deleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipstersandboxApp.examen.resident">Resident</span></dt>
+        <dd>
+          <div *ngIf="examen.resident">
+            <a [routerLink]="['/resident', examen.resident.id, 'view']">{{ examen.resident.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="jhipstersandboxApp.examen.soignant">Soignant</span></dt>
+        <dd>
+          <div *ngIf="examen.soignant">
+            <a [routerLink]="['/soignant', examen.soignant.id, 'view']">{{ examen.soignant.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/examen', examen.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="resident">
+      <h2 data-cy="residentDetailsHeading"><span jhiTranslate="jhipstersandboxApp.resident.detail.title">Resident</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ resident.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.numero" [ngbTooltip]="'jhipstersandboxApp.resident.help.numero' | translate"
+            >Numero</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.numero }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.nom" [ngbTooltip]="'jhipstersandboxApp.resident.help.nom' | translate">Nom</span>
+        </dt>
+        <dd>
+          <span>{{ resident.nom }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.prenom" [ngbTooltip]="'jhipstersandboxApp.resident.help.prenom' | translate"
+            >Prenom</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.prenom }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="jhipstersandboxApp.resident.dateNaissance"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.dateNaissance' | translate"
+            >Date Naissance</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.sexe" [ngbTooltip]="'jhipstersandboxApp.resident.help.sexe' | translate"
+            >Sexe</span
+          >
+        </dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipstersandboxApp.Sexe.' + resident.sexe }}">{{ resident.sexe }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="jhipstersandboxApp.resident.dateArrivee"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.dateArrivee' | translate"
+            >Date Arrivee</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.dateArrivee | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.chambre" [ngbTooltip]="'jhipstersandboxApp.resident.help.chambre' | translate"
+            >Chambre</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.chambre }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.taille" [ngbTooltip]="'jhipstersandboxApp.resident.help.taille' | translate"
+            >Taille</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.taille }}</span>
+        </dd>
+        <dt>
+          <span
+            jhiTranslate="jhipstersandboxApp.resident.denutrition"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.denutrition' | translate"
+            >Denutrition</span
+          >
+        </dt>
+        <dd>
+          <span jhiTranslate="{{ 'jhipstersandboxApp.StadeDenutrition.' + resident.denutrition }}">{{ resident.denutrition }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.resident.deleted" [ngbTooltip]="'jhipstersandboxApp.resident.help.deleted' | translate"
+            >Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ resident.deleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipstersandboxApp.resident.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="resident.etablissement">
+            <a [routerLink]="['/etablissement', resident.etablissement.id, 'view']">{{ resident.etablissement.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/resident', resident.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

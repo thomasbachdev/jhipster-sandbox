@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="rappel">
+      <h2 data-cy="rappelDetailsHeading"><span jhiTranslate="jhipstersandboxApp.rappel.detail.title">Rappel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ rappel.id }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.rappel.date" [ngbTooltip]="'jhipstersandboxApp.rappel.help.date' | translate">Date</span>
+        </dt>
+        <dd>
+          <span>{{ rappel.date | formatMediumDatetime }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.rappel.description" [ngbTooltip]="'jhipstersandboxApp.rappel.help.description' | translate"
+            >Description</span
+          >
+        </dt>
+        <dd>
+          <span>{{ rappel.description }}</span>
+        </dd>
+        <dt>
+          <span jhiTranslate="jhipstersandboxApp.rappel.deleted" [ngbTooltip]="'jhipstersandboxApp.rappel.help.deleted' | translate"
+            >Deleted</span
+          >
+        </dt>
+        <dd>
+          <span>{{ rappel.deleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="jhipstersandboxApp.rappel.docteur">Docteur</span></dt>
+        <dd>
+          <div *ngIf="rappel.docteur">
+            <a [routerLink]="['/docteur', rappel.docteur.id, 'view']">{{ rappel.docteur.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/rappel', rappel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+{
+  "applications": "*",
+  "changelogDate": "20221120154521",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "demande",
+  "fields": [
+    {
+      "fieldName": "dateEmition",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date de création de la demande"
+    },
+    {
+      "fieldName": "dateLimite",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Date limite pour réaliser la demande"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "javadoc": "Descriptif textuel de l'objectif de la demande"
+    },
+    {
+      "fieldName": "deleted",
+      "fieldType": "Boolean",
+      "javadoc": "Flag de suppression"
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Demande concernant un résident, qu'un docteur adresse aux soignants",
+  "jpaMetamodelFiltering": true,
+  "name": "Demande",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "resident",
+      "otherEntityRelationshipName": "demande",
+      "relationshipName": "resident",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "docteur",
+      "otherEntityRelationshipName": "demande",
+      "relationshipName": "docteur",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

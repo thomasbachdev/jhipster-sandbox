@@ -1,0 +1,41 @@
+{
+  "jhipstersandboxApp": {
+    "examen": {
+      "home": {
+        "title": "Examen",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Examen",
+        "createOrEditLabel": "Créer ou éditer un Examen",
+        "notFound": "Aucun Examen trouvé"
+      },
+      "created": "Un nouveau Examen a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Examen avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Examen avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Examen {{ id }} ?"
+      },
+      "detail": {
+        "title": "Examen"
+      },
+      "id": "ID",
+      "date": "Date",
+      "poids": "Poids",
+      "albumine": "Albumine",
+      "imc": "Imc",
+      "epa": "Epa",
+      "commentaire": "Commentaire",
+      "deleted": "Deleted",
+      "resident": "Resident",
+      "soignant": "Soignant",
+      "help": {
+        "date": "Date de réalisation de l&#39;examen",
+        "poids": "Poids du résident mesuré lors de l&#39;examen",
+        "albumine": "Taux d&#39;albumine du résident mesuré lors de l&#39;examen",
+        "imc": "Indice de masse corporelle du résident, le jour de l&#39;examen",
+        "epa": "EPA du résident mesuré lors de l&#39;examen",
+        "commentaire": "Commentaire du soignant sur l&#39;examen réalisé",
+        "deleted": "Flag de suppression"
+      }
+    }
+  }
+}

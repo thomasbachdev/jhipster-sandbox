@@ -1,0 +1,30 @@
+{
+  "jhipstersandboxApp": {
+    "soignant": {
+      "home": {
+        "title": "Soignants",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Soignant",
+        "createOrEditLabel": "Créer ou éditer un Soignant",
+        "notFound": "Aucun Soignant trouvé"
+      },
+      "created": "Un nouveau Soignant a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Soignant avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Soignant avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Soignant {{ id }} ?"
+      },
+      "detail": {
+        "title": "Soignant"
+      },
+      "id": "ID",
+      "deleted": "Deleted",
+      "user": "User",
+      "etablissement": "Etablissement",
+      "examen": "Examen",
+      "help": {
+        "deleted": "Flag de suppression"
+      }
+    }
+  }
+}

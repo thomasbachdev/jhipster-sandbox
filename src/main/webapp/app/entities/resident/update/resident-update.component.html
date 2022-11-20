@@ -1,0 +1,299 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-resident-heading" data-cy="ResidentCreateUpdateHeading" jhiTranslate="jhipstersandboxApp.resident.home.createOrEditLabel">
+        Créer ou éditer un Resident
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.numero"
+            for="field_numero"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.numero' | translate"
+            >Numero</label
+          >
+          <input type="number" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+          <div *ngIf="editForm.get('numero')!.invalid && (editForm.get('numero')!.dirty || editForm.get('numero')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('numero')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('numero')?.errors?.number" jhiTranslate="entity.validation.number">
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.nom"
+            for="field_nom"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.nom' | translate"
+            >Nom</label
+          >
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nom')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Ce champ doit faire moins de 50 caractères.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nom')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Nom' }"
+            >
+              Ce champ doit suivre l'expression régulière Nom.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.prenom"
+            for="field_prenom"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.prenom' | translate"
+            >Prenom</label
+          >
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+          <div *ngIf="editForm.get('prenom')!.invalid && (editForm.get('prenom')!.dirty || editForm.get('prenom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('prenom')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prenom')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              Ce champ doit faire moins de 50 caractères.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prenom')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Prenom' }"
+            >
+              Ce champ doit suivre l'expression régulière Prenom.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.dateNaissance"
+            for="field_dateNaissance"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.dateNaissance' | translate"
+            >Date Naissance</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateNaissance"
+              data-cy="dateNaissance"
+              type="text"
+              class="form-control"
+              name="dateNaissance"
+              ngbDatepicker
+              #dateNaissanceDp="ngbDatepicker"
+              formControlName="dateNaissance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dateNaissance')!.invalid && (editForm.get('dateNaissance')!.dirty || editForm.get('dateNaissance')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateNaissance')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.sexe"
+            for="field_sexe"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.sexe' | translate"
+            >Sexe</label
+          >
+          <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
+            <option [ngValue]="null">{{ 'jhipstersandboxApp.Sexe.null' | translate }}</option>
+            <option *ngFor="let sexe of sexeValues" [value]="sexe">{{ 'jhipstersandboxApp.Sexe.' + sexe | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('sexe')!.invalid && (editForm.get('sexe')!.dirty || editForm.get('sexe')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('sexe')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.dateArrivee"
+            for="field_dateArrivee"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.dateArrivee' | translate"
+            >Date Arrivee</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateArrivee"
+              data-cy="dateArrivee"
+              type="text"
+              class="form-control"
+              name="dateArrivee"
+              ngbDatepicker
+              #dateArriveeDp="ngbDatepicker"
+              formControlName="dateArrivee"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateArriveeDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div *ngIf="editForm.get('dateArrivee')!.invalid && (editForm.get('dateArrivee')!.dirty || editForm.get('dateArrivee')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateArrivee')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.chambre"
+            for="field_chambre"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.chambre' | translate"
+            >Chambre</label
+          >
+          <input type="text" class="form-control" name="chambre" id="field_chambre" data-cy="chambre" formControlName="chambre" />
+          <div *ngIf="editForm.get('chambre')!.invalid && (editForm.get('chambre')!.dirty || editForm.get('chambre')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('chambre')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('chambre')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 6 }"
+            >
+              Ce champ doit faire moins de 6 caractères.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.taille"
+            for="field_taille"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.taille' | translate"
+            >Taille</label
+          >
+          <input type="number" class="form-control" name="taille" id="field_taille" data-cy="taille" formControlName="taille" />
+          <div *ngIf="editForm.get('taille')!.invalid && (editForm.get('taille')!.dirty || editForm.get('taille')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('taille')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('taille')?.errors?.number" jhiTranslate="entity.validation.number">
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.denutrition"
+            for="field_denutrition"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.denutrition' | translate"
+            >Denutrition</label
+          >
+          <select class="form-control" name="denutrition" formControlName="denutrition" id="field_denutrition" data-cy="denutrition">
+            <option [ngValue]="null">{{ 'jhipstersandboxApp.StadeDenutrition.null' | translate }}</option>
+            <option *ngFor="let stadeDenutrition of stadeDenutritionValues" [value]="stadeDenutrition">
+              {{ 'jhipstersandboxApp.StadeDenutrition.' + stadeDenutrition | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="jhipstersandboxApp.resident.deleted"
+            for="field_deleted"
+            [ngbTooltip]="'jhipstersandboxApp.resident.help.deleted' | translate"
+            >Deleted</label
+          >
+          <input type="checkbox" class="form-check" name="deleted" id="field_deleted" data-cy="deleted" formControlName="deleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="jhipstersandboxApp.resident.etablissement" for="field_etablissement">Etablissement</label>
+          <select
+            class="form-control"
+            id="field_etablissement"
+            data-cy="etablissement"
+            name="etablissement"
+            formControlName="etablissement"
+            [compareWith]="compareEtablissement"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="etablissementOption" *ngFor="let etablissementOption of etablissementsSharedCollection">
+              {{ etablissementOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
